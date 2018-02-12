@@ -1,0 +1,48 @@
+---
+- hosts: all
+  tasks:
+    - name: Update system
+      apt:
+        upgrade: yes
+    - name: Install packages required for ALICE development
+      package:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - emacs24 # rather for myself
+        - ncurses-dev
+        - libgsl2
+        - libxml2
+        - curl
+        - automake
+        - cmake
+        - libbz2-dev
+        - libperl-dev
+        - libglu1-mesa-dev
+        - libxpm-dev
+        - libxext-dev
+        - libx11-dev
+        - libxft-dev
+        - libfreetype6
+        - libfreetype6-dev
+        - libxml2-dev
+        - autoconf
+        - automake
+        - autopoint
+        - texinfo
+        - gettext
+        - libtool
+        - libtool-bin
+        - pkg-config
+        - libcurl4-openssl-dev
+        - flex
+        - bison
+        - libssl-dev
+        - gfortran
+        - libboost-dev
+        - swig
+        - libgsl-dev
+        - python-pip
+    - name: Install aliBuild
+      pip:
+        name: alibuild
