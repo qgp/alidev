@@ -8,13 +8,15 @@ Vagrant.configure("2") do |config|
     box.vm.box    = "ubuntu/artful64"
   end
 
+#  config.disksize.size = "20GB"
   config.vm.provider "virtualbox" do |v|
     v.memory = 4096
     v.cpus = 2
   end
 
   config.vm.synced_folder "alisw", "/alisw"
-  config.vm.synced_folder "${HOME}/alidata", "/alidata"
+  #HOME="/Users/jklein"
+  config.vm.synced_folder "#{ENV['HOME']}/alidata", "/alidata"
 
   # Run Ansible from the Vagrant VM
   config.vm.provision "ansible_local" do |ansible|
